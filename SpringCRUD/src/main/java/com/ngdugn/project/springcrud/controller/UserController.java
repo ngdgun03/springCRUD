@@ -4,21 +4,22 @@ import com.ngdugn.project.springcrud.dto.UserDTO;
 import com.ngdugn.project.springcrud.entity.UserAccount;
 import com.ngdugn.project.springcrud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/add")
-    public String addUser(@RequestBody UserAccount userAccount){
-        userService.addUser(userAccount);
-        return "Add successfully!";
+    @PostMapping()
+    public ResponseEntity<UserAccount> addUser(@RequestBody UserAccount userAccount){
+        UserAccount newUser = userService.addUser(userAccount);
+        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
     /**
      * get users as list
@@ -33,7 +34,7 @@ public class UserController {
      * get user by id
      */
 
-    @GetMapping("/get")
+    @GetMapping("/{id}")
     public UserAccount getUser(@RequestParam Integer id) {
         return userService.getUser(id);
     }
@@ -42,23 +43,21 @@ public class UserController {
      * update user
      */
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Void> updateUser(@PathVariable Integer id, @RequestBody UserAccount userAccount) {
-        userService.updateUser(id, userAccount);
-
-        return ResponseEntity.noContent().build();
+    @PutMapping("/{id}")
+    public ResponseEntity<UserAccount> updateUser(@PathVariable Integer id, @RequestBody UserAccount userAccount) {
+        UserAccount updatedUser = userService.updateUser(id, userAccount);
+        return ResponseEntity.ok().body(updatedUser);
     }
 
     /**
      * delete user
      */
 
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Integer id){
-        userService.deleteUser(id);
-
-        return ResponseEntity.noContent().build();
+    @DeleteMapping("/{id}")
+    public List<UserAccount> deleteUser(@PathVariable Integer id) {
+        return userService.deleteUser(id);
     }
+
 
     /**
      * update name
