@@ -7,13 +7,13 @@ import java.util.List;
 
 public interface UserService {
 
-    UserAccount addUser(UserAccount userAccount);
+    List<UserAccount> addUser(UserAccount userAccount);
     List<UserAccount> getUsers() throws InterruptedException;
     UserAccount getUser(Integer id);
 
     UserAccount updateUser(Integer id, UserAccount userAccount);
 
-    List<UserAccount> deleteUser(Integer id) throws InterruptedException;
+    void deleteUser(Integer id) ;
 
     void updateName(Integer id, UserDTO userDTO);
 

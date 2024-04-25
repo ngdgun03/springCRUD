@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: 8080
   error:
     include-message: always
 spring:
@@ -9,8 +9,8 @@ spring:
     url: jdbc:mysql://localhost:3306/rent_service
     password: 123456
   redis:
-  host: redis
-  port: 6379
+    host: localhost
+    port: 6379
 
 jpa:
   hibernate:
@@ -21,12 +21,12 @@ springdoc:
   swagger-ui:
     path=/swagger-ui-custom:
       html:
-okta:
-  oauth2:
-    # Replace with the domain of your Auth0 tenant.
-    issuer: https://dev-2iuikzj50eqgyhsr.us.auth0.com/
-    # Replace with the API Identifier for your Auth0 API.
-    audience: https://demo/api
+#okta:
+#  oauth2:
+#    # Replace with the domain of your Auth0 tenant.
+#    issuer: https://dev-2iuikzj50eqgyhsr.us.auth0.com/
+#    # Replace with the API Identifier for your Auth0 API.
+#    audience: https://demo/api
 
 
 

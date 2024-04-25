@@ -3,7 +3,7 @@ FROM openjdk:11
 
 WORKDIR /app
 
-COPY target/spring-boot-redis.jar /app/spring-boot-redis.jar
+COPY ../../../target/spring-boot-redis.jar ./
 
 EXPOSE 8081
 
